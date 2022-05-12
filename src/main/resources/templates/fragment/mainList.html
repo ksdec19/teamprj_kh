@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+</head>
+
+<body>
+<main th:fragment="mainList">
+  <div class="shop-list-wrap">
+    <div class="shop-list-box">
+      <ul class="shops-box">
+
+        <li class="shop-each" th:each="item : ${list}">
+          <div class="shop-container">
+            <div class="shop-container-util shop-each_img shop-img-rd ">
+                     <img th:src="@{|/attach/${item.shopId}/B0105/${item.store_filename}|}"/>
+            </div>
+            <div class="shop-container-util shop-each_title">
+              <span><a href="" th:href="@{/coffeeShop/detail/{shopId}(shopId=${item.shopId})}" th:text="${item.shopName}">커피숍이름</a></span>
+            </div>
+            <div class="shop-container-util shop-each_hashtag">
+              <ul>
+                <li class="shop-hashtag-rep rep1">
+                  <div>
+                    <span class="mainHashtag" th:text="${item.hcategoryh0101}">#콜드브루</span>
+                    <span class="mainHashtag" th:text="${item.hcategoryh0102}">#울산중구</span>
+                  </div>
+                </li>
+                <br>
+                <li class="shop-hashtag-rep rep2">
+                  <div>
+                    <span class="mainHashtag" th:text="${item.hcategoryh0103}">#포근함</span>
+                    <span class="mainHashtag" th:text="${item.hcategoryh0104}">#공원뷰</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="coffeeShop-page page" >
+    <!--              이전페이지 정보-->
+    <th:block th:if="${fc.prev}">
+      <a class="coffeeShop-page-item" href=""
+         th:href="@{/coffeeShop/list/1/{searchType}/{keyword}(searchType=${fc.searchType},keyword=${fc.keyword})}">
+        <i class="fas fa-angle-double-left"></i>
+      </a>
+      <a class="coffeeShop-page-item" href=""
+         th:href="@{/coffeeShop/list/{reqPage}/{searchType}/{keyword}(reqPage=${fc.startPage-1},searchType=${fc.searchType},keyword=${fc.keyword})}">
+        <i class="fas fa-angle-left"></i>
+      </a>
+    </th:block>
+    <!--              페이지표시-->
+    <th:block th:each="pnum : ${#numbers.sequence(fc.startPage,fc.endPage)}">
+      <th:block th:if="${pnum != 0}">
+        <a class="coffeeShop-page-item" th:classappend="${fc.rc.reqPage == pnum} ? 'active'" href=""
+           th:href="@{/coffeeShop/list/{reqPage}/{searchType}/{keyword}(reqPage=${pnum},searchType=${fc.searchType},keyword=${fc.keyword})}"
+           th:text="${pnum}">1</a>
+      </th:block>
+    </th:block>
+    <!--                다음페이지정보-->
+    <th:block th:if="${fc.next}">
+      <a class="coffeeShop-page-item" href=""
+         th:href="@{/coffeeShop/list/{reqPage}/{searchType}/{keyword}(reqPage=${fc.endPage+1},searchType=${fc.searchType},keyword=${fc.keyword})}">
+        <i class="fas fa-angle-right"></i>
+      </a>
+      <a class="coffeeShop-page-item" href=""
+         th:href="@{/coffeeShop/list/{reqPage}/{searchType}/{keyword}(reqPage=${fc.finalEndPage},searchType=${fc.searchType},keyword=${fc.keyword})}">
+        <i class="fas fa-angle-double-right"></i>
+      </a>
+    </th:block>
+  </div>
+  </div>
+  <script>
+    // 대표 해시태그 정보 텍스트 앞에 # 붙이기
+    const $mainHashtag = document.querySelectorAll('.mainHashtag');
+
+    $mainHashtag.forEach(ele => {
+      if(ele.textContent.trim().length > 1) {
+        const $hashtagView = "#" + ele.textContent;
+        ele.textContent = $hashtagView;
+      }
+    });
+  </script>
+</main>
+</body>
+</html>

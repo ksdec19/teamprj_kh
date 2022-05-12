@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+</head>
+
+<body>
+<th:block th:fragment="beforeLoginUpm">
+  <div class="header-wrap">
+    <div class="header-box">
+      <div class="header-content header-login">
+        <a class="login-btn" href="" th:href="@{/login}">로그인</a>
+      </div>
+      <div class="header-content header-signin">
+        <a class="signin-btn" href="" th:href="@{/members/join}">회원가입</a>
+      </div>
+    </div>
+  </div>
+</th:block>
+
+<th:block th:fragment="afterLoginUpm">
+  <div class="header-wrap">
+    <div class="header-box">
+      <div class="header-content header-login">
+        <a class="login-btn" href="" th:href="@{/logout}">로그아웃</a>
+      </div>
+      <div class="header-content header-signin">
+        <a class="signin-btn" href="" th:href="@{|/members/myinfo/${s_id}|}">마이페이지</a>
+      </div>
+      <th:block th:if="${s_email} eq 'admin@surfer.com'">
+        <div class="header-content header-signin">
+          <a class="adminBtn" href="/admin/coffeeShop/list">관리자페이지</a>
+        </div>
+      </th:block>
+    </div>
+  </div>
+</th:block>
+</body>
+</html>

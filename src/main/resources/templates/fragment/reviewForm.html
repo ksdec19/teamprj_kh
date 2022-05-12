@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리뷰 목록</title>
+  <style>
+    .first-row {
+      background-Color: yellow;
+    }
+
+
+  </style>
+
+</head>
+
+<body>
+<div th:fragment="reviewForm">
+
+  <main class="page-main-wrap">
+    <div class="main-sub">
+      <div class="main-nav-title">
+        <span>내가 작성한 리뷰</span>
+      </div>
+      <div class="main-review-wrap">
+
+
+        <div class="main-review-each" th:each="item : ${reviewList}">
+          <div class="review-shop-img-box">
+            <img th:src="@{|/attach/${item.shopId}/B0105/${item.store_filename}|}"/>
+            <h1 class="shop-title"><a href="" th:href="@{/coffeeShop/detail/{shopId}(shopId=${item.shopId})}" th:text="${item.shopName}">커피숍이름</a></h1>
+          </div>
+          <div class="review-shop-content-box">
+            <div class="review-header">
+              <div class="review-writer-info">
+                <div class="review-writer">
+                  <span th:text="${item.memberName}">tjda*****</span>
+                </div>
+                <div class="review-date">
+                  <span th:text="${item.shopCdate}">YYYY/MM/DD</span>
+                </div>
+              </div>
+              <div class="review-btn">
+                <a href="javascript:void(0)" class="rev-modify-btn">수정</a>
+                <a href="javascript:void(0)" class="rev-report-btn">신고</a>
+                <a href="javascript:void(0)" class="rev-del-btn delabc">삭제</a>
+              </div>
+            </div>
+            <div class="review-content">
+              <h1 th:text="${item.reviewContent}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nihil, rem optio exercitationem
+                fuga, dolore repudiandae non officia harum illum consequatur laborum esse quidem tempora maxime
+                asperiores? Commodi, dolore in.</h1>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+</body>
+
+</html>

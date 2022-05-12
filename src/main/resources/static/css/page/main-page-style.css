@@ -1,0 +1,132 @@
+@charset "utf-8";
+@import url('reset.css');
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@media screen and (min-width: 961px) {
+  .header_top_wrap {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    box-shadow: 0 7px 10px -3px rgba(132, 155, 156, 0.8);
+    background-color: #fff;
+    z-index: 1000;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: 'Jeju Gothic', sans-serif;
+  }
+  .header_logo_home_evt {
+    width: 220px;
+    height: 37px;
+    text-align: center;
+    margin-left: 40px;
+  }
+  .logo {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('/img/logo/logo-color.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .header_util_wrap {
+    margin-top: 20px;
+    margin-right: 40px;
+    display: flex;
+  }
+  .header_util_evt {
+    width: 100px;
+    height: 37px;
+    margin: 0 10px;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #8cc841, #29aeec 50%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+  .header_util_evt > a {
+    line-height: 38px;
+  }
+
+  /* 상세검색 내용 */
+  .shop-list-wrap {
+    margin: 170px auto 0;
+    width: 100%;
+    max-width: 1200px;
+    min-width: 961px;
+    height: auto;
+    display: block;
+  }
+  .shops-box {
+    width: 100%;
+    position: relative;
+    margin-right: auto;
+  }
+  .shops-box::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .shop-each {
+    float: left;
+    width: 260px;
+    height: 300px;
+    display: list-item;
+    border-radius: 0 0 80px 0;
+    margin: 0 20px 40px;
+    box-shadow: 0px 2px 14px -2px rgba(153, 162, 180, 0.8);
+  }
+  .shop-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .shop-container-util {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .shop-each_img {
+    height: 170px;
+    margin-top: 20px;
+  }
+  .shop-each_img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .shop-each_title {
+    font-size: 1.1rem;
+    margin: 12px auto;
+    text-align: center;
+    word-break: keep-all;
+  }
+  .shop-each_hashtag {
+    font-size: 0.8rem;
+  }
+  .page {
+    float: clear;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .page > a {
+    font-size: 16px;
+    margin: 3px;
+    border: 1px solid #29aeec;
+    width: 24px;
+    height: 24px;
+    box-sizing: content-box;
+    display: inline-block;
+    line-height: 27px;
+  }
+}
+
+@media screen and (min-width: 961px) and (max-width: 1199px) {
+  .shop-each {
+    width: 23%;
+    margin: 1%;
+  }
+}

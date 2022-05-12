@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+</head>
+
+<body>
+
+<nav th:fragment="my-page">
+  <ul class="depth1">
+    <li class="item">
+      <a th:href="@{/admin/coffeeShop/list}">커피숍전체목록</a>
+    </li>
+    <li class="item">
+      <a th:href="@{/coffeeShop/memberlist}">회원전체목록</a>
+    </li>
+    <li class="item">
+      <a th:href="@{/coffeeShop/reviewList}">신고 리뷰목록</a>
+    </li>
+  </ul>
+</nav>
+</body>
+</html>

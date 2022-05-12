@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원 전체조회</title>
+  <style>
+    .first-row{
+      background-Color:yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>회원 전체 조회</h3>
+  <hr>
+  <!--<div>[[${memberAll}]]</div>-->
+  <table>
+    <thead>
+      <tr>
+        <th>NO</th>
+        <th>내부 식별ID</th>
+        <th>회원 아이디</th>
+        <th>비밀번호</th>
+        <th>이름</th>
+        <th>성별</th>
+        <th>생년월일</th>
+        <th>전화번호</th>
+        <!-- end of 임의 추가한 구간 -->
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="membership : ${memberAll}">
+        <th:block th:if="${membershipStat.first}">
+          <td class="first-row" th:text="${membershipStat.count}"></td>
+          <td class="first-row" th:text="${membership.memberId}"></td>
+          <td class="first-row" ><a th:href="@{|/admin/members/${membership.memberEmail}/|}" th:text="${membership.memberEmail}"></a></td>
+          <td class="first-row" th:text="${membership.memberPasswd}"></td>
+          <td class="first-row" th:text="${membership.memberName}"></td>
+          <!-- 임의 추가한 구간 -->
+          <td class="first-row" th:text="${membership.memberGender}"></td>
+          <td class="first-row" th:text="${membership.memberAge}"></td>
+          <td class="first-row" th:text="${membership.memberTel}"></td>
+          <td class="first-row" th:text="${membership.memberOwner}"></td>
+          <!-- end of 임의 추가한 구간 -->
+        </th:block>
+
+        <th:block th:unless="${membershipStat.first}">
+          <td th:text="${membershipStat.count}"></td>
+          <td th:text="${membership.memberId}"></td>
+          <td> <a th:href="@{|/admin/members/${membership.memberEmail}/|}" th:text="${membership.memberEmail}"></a></td>
+          <td th:text="${membership.memberPasswd}"></td>
+          <td th:text="${membership.memberName}"></td>
+          <!-- 임의 추가한 구간 -->
+          <td th:text="${membership.memberGender}"></td>
+          <td th:text="${membership.memberAge}"></td>
+          <td th:text="${membership.memberTel}"></td>
+          <td th:text="${membership.memberOwner}"></td>
+          <!-- end of 임의 추가한 구간 -->
+        </th:block>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+/* ckeditor style 지정 */
+#bcontent {
+  display: none;
+}
+.coffeeShop-wrap .ck-editor__editable {
+  min-height: 20rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+.coffeeShop-wrap * {
+  /* outline:1px solid red; */
+  box-sizing: border-box;
+}
+.coffeeShop-wrap {
+  width: 80%;
+}
+.coffeeShop-wrap .coffeeShop-hit {
+  display: flex;
+  justify-content: end;
+}
+.coffeeShop-wrap .coffeeShop-hit .coffeeShop-hit-content {
+  width: 50px;
+  font-weight: bold;
+}
+.coffeeShop-wrap .coffeeShop-hit .coffeeShop-hit-content.coffeeShop-hit-cnt {
+  text-align: right;
+}
+.coffeeShop-wrap .coffeeShop-title {
+  text-align: center;
+  padding: 20px 0;
+}
+.coffeeShop-wrap .coffeeShop-content,
+.coffeeShop-wrap .coffeeShop-attach {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 5px;
+}
+.coffeeShop-wrap .coffeeShop-content .w100 {
+  width: 100%;
+  padding: 3px;
+}
+.coffeeShop-wrap .coffeeShopbtngrp {
+  display: flex;
+  justify-content: flex-end;
+}

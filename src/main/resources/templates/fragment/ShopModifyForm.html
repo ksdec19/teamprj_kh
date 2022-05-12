@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커피숍 수정</title>
+  <style>
+    .first-row {
+      background-Color: yellow;
+    }
+  </style>
+
+</head>
+
+<body>
+<div th:fragment="shopModifyForm">
+  <main class="page-main-wrap">
+    <div class="main-sub">
+      <div class="main-nav-title">
+        <span>커피숍 정보 수정</span>
+      </div>
+    </div>
+    <form  id="editForm" method="post" th:object="${coffeeShopModifyForm}" enctype="multipart/form-data">
+      <input type="hidden" th:field="*{shopId}" id="shopId">
+      <div class="shopAdd">
+        <div class="content">
+          <table>
+            <tr>
+              <td class="box2">
+                <input type="text" placeholder="커피숍 명을 입력해주세요" th:field="*{shopName}">
+                <p th:if="${#fields.hasErrors('shopName')}" th:errors="*{shopName}"></p>
+              </td>
+            </tr>
+            <tr>
+              <td class="box2">
+                <input type="text" placeholder="- 빼고 입력해주세요" th:field="*{shopTel}">
+                <p th:if="${#fields.hasErrors('shopTel')}" th:errors="*{shopTel}"></p>
+              </td>
+            </tr>
+            <tr>
+              <td class="box2">
+                <input type="text" size="60" placeholder="상세 주소를 입력해주세요" th:field="*{shopAddress}">
+                <p th:if="${#fields.hasErrors('shopAddress')}" th:errors="*{shopAddress}"></p>
+              </td>
+            </tr>
+            <tr>
+              <td class="box2 parking">
+                <span>주차 가능</span>
+                <li>
+                  <th:block th:each=" ele : ${parking} ">
+                    <label th:for="${#ids.next('parking')}" th:text="${ele.description}"></label>
+                    <input type="radio" name="parking" th:field="*{parking}"
+                           th:value="${ele.description}">
+                  </th:block>
+                  <th:block th:remove="all">
+                    <label for="noParking">아니오</label>
+                    <input type="radio" name="parking" id="noParking" value="아니오">
+                    <label for="Parking">예</label>
+                    <input type="radio" name="parking" id="Parking" value="예">
+                  </th:block>
+                </li>
+              </td>
+            </tr>
+            <tr>
+              <td class="box2 allday">
+                <span>24시간 운영</span>
+                <li>
+                  <th:block th:each=" ele : ${allday} ">
+                    <label th:for="${#ids.next('allday')}" th:text="${ele.description}"></label>
+                    <input type="radio" name="allday" th:field="*{allday}"
+                           th:value="${ele.description}">
+                  </th:block>
+                  <th:block th:remove="all">
+                    <label for="noAllDay">아니오</label>
+                    <input type="radio" name="noAllDay" id="noAllDay" value="아니오">
+                    <label for="allday">예</label>
+                    <input type="radio" name="allday" id="allday" value="예">
+                  </th:block>
+                </li>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="files">
+                <div class="shop_file coffeeShop-wrap1" data-code="B0101">
+                  <div class="Classification">
+                    <div class="selectBox">메인사진</div>
+                    <select name="" class="w100" th:field="*{bcategoryB0101}" readonly
+                            onFocus="this.initialSelect = this.selectedIndex;"
+                            onChange="this.selectedIndex = this.initialSelect;">
+                      <th:block th:each="code : ${classifier}">
+                        <option value="" th:value="${code.code}" th:text="${code.decode}"></option>
+                      </th:block>
+                    </select>
+                    <input type="file" id="" name="" class="w100" th:field="*{files1}" multiple>
+                  </div>
+                </div>
+
+                <div class="coffeeShop-attach">
+                  <div id="attachFiles1">
+                    <div class="attachFile" th:each="file : ${attachFiles1}">
+                      <th:block th:if="${#strings.contains(file.ftype,'image')}" >
+                        <img th:src="@{|/attach/view/${file.uploadfileId}|}" th:width="30px" th:height="30px">
+                      </th:block>
+                      <div>
+                        <a href="" th:href="@{|/attach/down/${file.uploadfileId}|}" th:text="${file.upload_filename}"></a>
+                        <i class="fa-solid fa-trash-can" th:data-fid="${file.uploadfileId}" style="cursor: pointer;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="shop_file coffeeShop-wrap2" data-code="B0102">
+                  <div class="Classification">
+                    <div class="selectBox">음료</div>
+                    <select name="" class="w100" th:field="*{bcategoryB0102}" readonly
+                            onFocus="this.initialSelect = this.selectedIndex;"
+                            onChange="this.selectedIndex = this.initialSelect;">
+                      <th:block th:each="code : ${classifier}">
+                        <option value="" th:value="${code.code}" th:text="${code.decode}"></option>
+                      </th:block>
+                    </select>
+                    <input type="file" id="" name="" class="w100" th:field="*{files2}" multiple>
+                  </div>
+                </div>
+
+                <div class="coffeeShop-attach">
+                  <div id="attachFiles2">
+                    <div class="attachFile" th:each="file : ${attachFiles2}">
+                      <th:block th:if="${#strings.contains(file.ftype,'image')}" >
+                        <img th:src="@{|/attach/view/${file.uploadfileId}|}" th:width="30px" th:height="30px">
+                      </th:block>
+                      <div>
+                        <a href="" th:href="@{|/attach/down/${file.uploadfileId}|}" th:text="${file.upload_filename}"></a>
+                        <i class="fa-solid fa-trash-can" th:data-fid="${file.uploadfileId}" style="cursor: pointer;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="shop_file coffeeShop-wrap3" data-code="B0103">
+                  <div class="Classification">
+                    <div class="selectBox">디저트</div>
+                    <select name="" class="w100" th:field="*{bcategoryB0103}" readonly
+                            onFocus="this.initialSelect = this.selectedIndex;"
+                            onChange="this.selectedIndex = this.initialSelect;">
+                      <th:block th:each="code : ${classifier}">
+                        <option value="" id="" th:value="${code.code}" th:text="${code.decode}"></option>
+                      </th:block>
+                    </select>
+                    <input type="file" name="" class="w100" th:field="*{files3}" multiple>
+                  </div>
+                </div>
+
+                <div class="coffeeShop-attach">
+                  <div id="attachFiles3">
+                    <div class="attachFile" th:each="file : ${attachFiles3}">
+                      <th:block th:if="${#strings.contains(file.ftype,'image')}" >
+                        <img th:src="@{|/attach/view/${file.uploadfileId}|}" th:width="30px" th:height="30px">
+                      </th:block>
+                      <div>
+                        <a href="" th:href="@{|/attach/down/${file.uploadfileId}|}" th:text="${file.upload_filename}"></a>
+                        <i class="fa-solid fa-trash-can" th:data-fid="${file.uploadfileId}" style="cursor: pointer;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="shop_file coffeeShop-wrap4" data-code="B0104">
+                  <div class="Classification">
+                    <div class="selectBox">굿즈</div>
+                    <select name="" class="w100" th:field="*{bcategoryB0104}" readonly
+                            onFocus="this.initialSelect = this.selectedIndex;"
+                            onChange="this.selectedIndex = this.initialSelect;">
+                      <th:block th:each="code : ${classifier}">
+                        <option value="" th:value="${code.code}" th:text="${code.decode}"></option>
+                      </th:block>
+                    </select>
+                    <input type="file" id="" name="" class="w100" th:field="*{files4}" multiple>
+                  </div>
+                </div>
+
+                <div class="coffeeShop-attach">
+                  <div id="attachFiles4">
+                    <div class="attachFile" th:each="file : ${attachFiles4}">
+                      <th:block th:if="${#strings.contains(file.ftype,'image')}" >
+                        <img th:src="@{|/attach/view/${file.uploadfileId}|}" th:width="30px" th:height="30px">
+                      </th:block>
+                      <div>
+                        <a href="" th:href="@{|/attach/down/${file.uploadfileId}|}" th:text="${file.upload_filename}"></a>
+                        <i class="fa-solid fa-trash-can" th:data-fid="${file.uploadfileId}" style="cursor: pointer;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="shop_file coffeeShop-wrap5" data-code="B0105">
+                  <div class="Classification">
+                    <div class="selectBox">썸네일</div>
+                    <select name="" class="w100" th:field="*{bcategoryB0105}" readonly
+                            onFocus="this.initialSelect = this.selectedIndex;"
+                            onChange="this.selectedIndex = this.initialSelect;">
+                      <th:block th:each="code : ${classifier}">
+                        <option value="" th:value="${code.code}" th:text="${code.decode}"></option>
+                      </th:block>
+                    </select>
+                    <input type="file" id="" name="" class="w100" th:field="*{files5}" >
+                  </div>
+                </div>
+
+                <div class="coffeeShop-attach">
+                  <div id="attachFiles5">
+                    <div class="attachFile" th:each="file : ${attachFiles5}">
+                      <th:block th:if="${#strings.contains(file.ftype,'image')}" >
+                        <img th:src="@{|/attach/view/${file.uploadfileId}|}" th:width="30px" th:height="30px">
+                      </th:block>
+                      <div>
+                        <a href="" th:href="@{|/attach/down/${file.uploadfileId}|}" th:text="${file.upload_filename}"></a>
+                        <i class="fa-solid fa-trash-can" th:data-fid="${file.uploadfileId}" style="cursor: pointer;"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="box2">
+                <input type="text" size="60" placeholder="첫 번째 대표 해시태그를 입력해주세요" th:field="*{hcategoryh0101}">
+                <input type="text" size="60" placeholder="두 번째 대표 해시태그를 입력해주세요" th:field="*{hcategoryh0102}">
+                <input type="text" size="60" placeholder="세 번째 대표 해시태그를 입력해주세요" th:field="*{hcategoryh0103}">
+                <input type="text" size="60" placeholder="네 번째 대표 해시태그를 입력해주세요" th:field="*{hcategoryh0104}">
+              </td>
+            </tr>
+
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </form>
+    <div class="Btn">
+
+        <button type="button" id="saveBtn">저장</button>
+        <button type="button" id="cancelBtn">취소</button>
+        <button type="button" id="listBtn">목록</button>
+        <button type="button" id="delBtn">삭제</button>
+      </div>
+
+
+  </main>
+</div>
+</body>
+
+</html>

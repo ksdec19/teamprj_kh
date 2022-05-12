@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+</head>
+<body>
+<main th:fragment="contentItem">
+
+
+  <form action="" method="post" th:object="${coffeeShopDetailForm}">
+    <input type="hidden" th:field="*{shopId}" id="shopId">
+    <input type="hidden" id="memberId" name="memberId" th:value="${s_id}">
+    <input type="text" id="shopUrl" name="shopUrl" style="display: none;"
+           th:value="|http://localhost:9080/coffeeShop/detail/*{shopId}|">
+    <!-- container -->
+    <!-- width : standard -->
+    <div class="container">
+
+      <!-- shop_info -->
+      <div class="shop_info_wrap">
+
+        <!-- shop_title_wrap -->
+        <!-- 상호 로고 / 이름 -->
+<!--        <div class="shop_title_wrap">-->
+<!--          <div class="shop_logo">-->
+<!--            <img src="" alt="">-->
+<!--          </div>-->
+<!--          <div class="shop_title">-->
+<!--            <span>STARBUCKS</span>-->
+<!--            &lt;!&ndash; <img src="" alt=""> &ndash;&gt;-->
+<!--            &lt;!&ndash; 개별 로고 / 타이틀 사용시 이미지로 대체 &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+        <!-- End of shop_title_wrap -->
+        <!-- shop_info -->
+        <div class="shop-info">
+
+          <div class="shop-info_img">
+
+            <div class="info-img-box">
+
+              <div class="shop-img-slide-box" th:each="uploadFile : ${attachFiles1}">
+                <th:block th:if="${uploadFileStat.first}">
+                  <div class="shop-img fade">
+                    <img th:src="@{|/attach/*{shopId}/B0101/${uploadFile.store_filename}|}"/>
+                  </div>
+                </th:block>
+                <th:block th:unless="${uploadFileStat.first}">
+                  <div class="shop-img fade">
+                    <img th:src="@{|/attach/*{shopId}/B0101/${uploadFile.store_filename}|}"/>
+                  </div>
+                </th:block>
+              </div>
+
+              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <br/>
+          </div>
+
+
+          <!-- shop-info_content-wrap -->
+          <div class="shop-info-content-wrap">
+            <div class="shop-info-content shop-title-sub-box">
+              <div class="shop-title-sub">
+                <h1 id="shopName" th:text="*{shopName}">카페 상호명</h1>
+                <th:block th:if="${s_id}? true : false">
+                  <a href="javascript:void(0)" id="heartBtn" class="heart-btn 1"
+                     style="background-image: url('/img/icon/icon-heart-red.png');"
+                     th:if="${isBookmark}">등록취소</a>
+                  <a href="javascript:void(0)" id="heartBtn" class="heart-btn 1"
+                     style="background-image: url('/img/icon/icon-heart-empty-red.png');"
+                     th:unless="${isBookmark}">등록</a>
+                </th:block>
+                <a href="javascript:void(0)" class="link-btn">현재 url 복사</a>
+              </div>
+            </div>
+            <div class="shop-info-content shop-location-sub-box">
+              <div class="shop-location-icon-box icon-box">
+                <a href="#" class="location-icon"></a>
+              </div>
+              <div class="location-txt txt-box">
+                <span id="shopAddress" th:text="*{shopAddress}">카페 주소</span>
+              </div>
+            </div>
+            <div class="shop-info-content shop-call-sub-box">
+              <div class="shop-call-icon-box icon-box">
+                <a href="#" class="call-icon"></a>
+              </div>
+              <div class="call-txt txt-box">
+                <span th:text="*{shopTel}">카페 전화번호</span>
+              </div>
+            </div>
+            <div class="shop-info-content shop-hashtag-sub-box">
+              <div class="shop-hashtag-icon-box icon-box">
+                <img src="/img/icon/icon-hashtag.png" class="hashtag-icon">
+              </div>
+              <div class="hashtag-txt txt-box">
+                <div>
+                  <span class="mainHashtag" th:text="*{hcategoryh0101}">#해시태그1</span>
+                  <span class="mainHashtag" th:text="*{hcategoryh0102}">#해시태그2</span>
+                </div>
+                <br>
+                <div>
+                  <span class="mainHashtag" th:text="*{hcategoryh0103}">#해시태그3</span>
+                  <span class="mainHashtag" th:text="*{hcategoryh0104}">#해시태그4</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="shop-info-content">
+              <div class="shop-parking-icon-box icon-box">
+                <img src="/img/icon/parking.png" class="allday-parking-icon">
+              </div>
+              <div class="parking-txt txt-box">
+                <span th:text="*{parking}">주차</span>
+              </div>
+              <div class="shop-allday-icon-box icon-box">
+                <img src="/img/icon/24-hours.png" class="allday-parking-icon">
+              </div>
+              <div class="allday-txt txt-box">
+                <span th:text="*{allday}">24시간</span>
+              </div>
+            </div>
+
+            <!--
+            해시태그 전체보기 / 링크 복사
+            -->
+<!--            전체 해시태그를 줄력하면 한 가게당 걸려있는 해시태그가 너무 많아서 페이지 화면 밸런스 깨짐.-무년- -->
+<!--            <div class="shop-info-content shop-hashtag-sub-box">-->
+<!--              <div class="shop-hashtag-icon-box icon-box">-->
+<!--                <a href="#" class="hashtag-all-icon"></a>-->
+<!--              </div>-->
+<!--              <div class="hashtag-txt txt-box">-->
+<!--                <span>#해시태그1</span>-->
+<!--                <span>#해시태그2</span>-->
+<!--                <span>#해시태그3</span>-->
+<!--                <span>#해시태그4</span>-->
+<!--              </div>-->
+<!--            </div>-->
+          </div>
+          <!-- End of shop-info_content-wrap -->
+          <div class="map-box">
+
+            <!-- 지도를 표시할 div 입니다 -->
+            <div id="map" style="width: 100%; height: 100%;"></div>
+            <p class="map_info">마커를 클릭하면 카카오맵으로 이동합니다.</p>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- End of shop_info -->
+
+      <!-- shop-contents_all -->
+      <div class="shop-contents_all">
+        <div class="content-info_wrap">
+          <div class="content-info">
+            <div class="content-info_title">
+              <span>음료</span>
+            </div>
+            <div class="content-info_btn">
+              <a href="javascript:void(0)" class="info-btn btn_beverage"></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-box menu_beverage">
+          <ul class="item">
+
+            <li class="item-list-set" th:each="uploadFile : ${attachFiles2}">
+              <th:block th:if="${uploadFileStat.first}">
+                <div class="item-img">
+                  <img style="width: 100%; height: 200px;"
+                       th:src="@{|/attach/*{shopId}/B0102/${uploadFile.store_filename}|}"/>
+                </div>
+                <div class="item-info">
+                  <span class="item-info-menu-title " th:text="${uploadFile.upload_filename}"></span>
+                </div>
+              </th:block>
+              <th:block th:unless="${uploadFileStat.first}">
+                <div class="item-img">
+                  <img style="width: 100%; height: 200px;"
+                       th:src="@{|/attach/*{shopId}/B0102/${uploadFile.store_filename}|}"/>
+                </div>
+                <div class="item-info">
+                  <span class="item-info-menu-title " th:text="${uploadFile.upload_filename}"></span>
+                </div>
+              </th:block>
+            </li>
+
+
+          </ul>
+        </div>
+
+        <div class="content-info_wrap">
+          <div class="content-info">
+            <div class="content-info_title">
+              <span>디저트</span>
+            </div>
+            <div class="content-info_btn">
+              <a href="javascript:void(0)" class="info-btn btn_dessert">></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-box menu_dessert">
+          <ul class="item">
+            <li class="item-list-set" th:each="uploadFile : ${attachFiles3}">
+              <th:block th:if="${uploadFileStat.first}">
+                <div class="item-img">
+                  <img style="width: 100%; height: 200px;"
+                       th:src="@{|/attach/*{shopId}/B0103/${uploadFile.store_filename}|}"/>
+                </div>
+                <div class="item-info">
+                  <span class="item-info-menu-title " th:text="${uploadFile.upload_filename}"></span>
+                </div>
+              </th:block>
+              <th:block th:unless="${uploadFileStat.first}">
+                <div class="item-img">
+                  <img style="width: 100%; height: 200px;"
+                       th:src="@{|/attach/*{shopId}/B0103/${uploadFile.store_filename}|}"/>
+                </div>
+                <div class="item-info">
+                  <span class="item-info-menu-title " th:text="${uploadFile.upload_filename}"></span>
+                </div>
+              </th:block>
+            </li>
+          </ul>
+        </div>
+
+        <div class="content-info_wrap">
+          <div class="content-info">
+            <div class="content-info_title">
+              <span>굿즈</span>
+            </div>
+            <div class="content-info_btn">
+              <a href="javascript:void(0)" class="info-btn btn_goods">></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-box menu_goods">
+          <ul class="item">
+            <li class="item-list-set" th:each="uploadFile : ${attachFiles4}">
+              <th:block th:if="${uploadFileStat.first}">
+                <div class="item-img">
+                  <img style="width: 100%; height: 200px;"
+                       th:src="@{|/attach/*{shopId}/B0104/${uploadFile.store_filename}|}"/>
+                </div>
+                <div class="item-info">
+                  <span class="item-info-menu-title " th:text="${uploadFile.upload_filename}"></span>
+                </div>
+              </th:block>
+              <th:block th:unless="${uploadFileStat.first}">
+                <div class="item-img">
+                  <img style="width: 100%; height: 200px;"
+                       th:src="@{|/attach/*{shopId}/B0104/${uploadFile.store_filename}|}"/>
+                </div>
+                <div class="item-info">
+                  <span class="item-info-menu-title " th:text="${uploadFile.upload_filename}"></span>
+                </div>
+              </th:block>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 리뷰 메뉴 바 -->
+        <div class="content-info_wrap">
+          <div class="content-info">
+            <div class="content-info_title">
+              <span>리뷰</span>
+            </div>
+            <div class="content-info_btn">
+              <a href="javascript:void(0)" class="info-btn btn_review">></a>
+            </div>
+          </div>
+        </div>
+        <!-- 리뷰 신고 form -->
+        <div id="reportForm" class="report-wrap">
+          <div class="report-header-wrap">
+            <input type="hidden" id="repReviewId">
+            <span>신고 사유</span>
+          </div>
+          <div class="report-body-wrap">
+            <p><label for="r0"><input type="radio" class="repRadio" name="report" id="r0"
+                                      value="0"><span>스팸(부적절한 홍보)</span></label></p>
+            <p><label for="r1"><input type="radio" class="repRadio" name="report" id="r1"
+                                      value="1"><span>음란물</span></label></p>
+            <p><label for="r2"><input type="radio" class="repRadio" name="report" id="r2"
+                                      value="2"><span>혐오표현</span></label></p>
+            <p><label for="r3"><input type="radio" class="repRadio" name="report" id="r3" value="3"><span>욕설 및 비방</span></label>
+            </p>
+          </div>
+          <div class="report-btn-wrap">
+            <input type="button" class="btn-y" id="btnY" value="신고하기">
+            <input type="button" class="btn-n" id="btnN" value="돌아가기">
+          </div>
+        </div>
+        <!-- 리뷰 공간 전체 -->
+        <div class="review-wrap menu_review">
+
+          <!-- 작성된 리뷰 출력 -->
+          <div class="review-box">
+            <div class="review-header">
+              <div class="review-writer-info">
+                <div class="review-writer">샘플 작성자</div>
+                <div class="review-date">
+                  <span>샘플 날짜 YYYY/MM/DD</span>
+                </div>
+              </div>
+              <div class="review-delete-btn">
+                <a href="javascript:void(0)" class="rev-report-btn">신고</a>
+                <a href="javascript:void(0)" class="rev-del-btn delabc">삭제</a>
+              </div>
+            </div>
+            <div class="review-content">
+              <div class="review-text-box">
+                <h1>샘플리뷰</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of shop-contents_all -->
+
+    </div>
+  </div>
+    <!-- End of container -->
+  </form>
+
+  <script type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7fba4b29e99f63689b2e4d190c478841&libraries=services"></script>
+  <script>
+    const $shopName = shopName.textContent;
+    const $shopAddress = shopAddress.textContent;
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 4 // 지도의 확대 레벨
+    };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch($shopAddress, function(result, status) {
+
+        // 정상적으로 검색이 완료됐으면
+         if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords,
+                clickable: true
+            });
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+
+            // 마커를 클릭하면 카카오맵으로 이동
+            kakao.maps.event.addListener(marker, 'click', (evt) => {
+              window.open(`https://map.kakao.com/?q=${$shopName}`)
+            });
+        }
+    });
+
+  </script>
+  <script>
+    // 사진 이름 확장자명 제거
+    const $reviewer = document.querySelectorAll('.item-info-menu-title');
+
+    $reviewer.forEach(ele => {
+      const $NC = ele.textContent.split(".");;
+      ele.textContent = $NC[0];
+    });
+
+    // 대표 해시태그 정보 텍스트 앞에 # 붙이기
+    const $mainHashtag = document.querySelectorAll('.mainHashtag');
+
+    $mainHashtag.forEach(ele => {
+      if(ele.textContent.trim().length > 1) {
+        const $hashtagView = "#" + ele.textContent;
+        ele.textContent = $hashtagView;
+      }
+    });
+  </script>
+</main>
+</body>
+</html>

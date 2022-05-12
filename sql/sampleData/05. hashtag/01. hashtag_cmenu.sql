@@ -1,0 +1,28 @@
+set define off;
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'메이플 라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'모카 프라푸치노',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'바나나 카페 라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'바닐라 라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'아메리카노',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'에소 말차 라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'에스프레소',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'에스프레소 마끼아또',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'에스프레소 콘파냐',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'에스프레소 프라페',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'연유 라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'자바칩 프라푸치노',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'카라멜 카페모카',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'카라멜 마끼아또',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'카페 라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'카페모카',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'카푸치노',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'콜드브루',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'콜드브루 라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'콜드브루 바닐라라떼',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'콜드브루 원액',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'콜슈페너',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'핸드드립',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'아포가토',default);
+insert into hashtag_classification values (hashtag_id_seq.nextval, hashtag_cmenu_id_seq.nextval,'헤이즐넛 라떼',default);
+
+commit;

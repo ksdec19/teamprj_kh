@@ -1,0 +1,472 @@
+@charset "utf-8";
+@import url('reset.css');
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+body {
+  font-family: sans-serif, Arial, '맑은 고딕';
+}
+
+@media screen and (min-width: 961px) {
+  .allday-parking-icon {
+    width: 35px;
+    height: 35px;
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .allday-txt,
+  .parking-txt {
+    text-align: center;
+    width: 35%;
+  }
+
+  .header_top_wrap {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    box-shadow: 0 7px 10px -3px rgba(132, 155, 156, 0.8);
+    background-color: #fff;
+    z-index: 1000;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: 'Jeju Gothic', sans-serif;
+  }
+  .header_logo_home_evt {
+    width: 220px;
+    height: 37px;
+    text-align: center;
+    margin-left: 40px;
+  }
+  .logo {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('/img/logo/logo-color.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .header_util_wrap {
+    margin-top: 20px;
+    margin-right: 40px;
+    display: flex;
+  }
+  .header_util_evt {
+    width: 100px;
+    height: 37px;
+    margin: 0 10px;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #8cc841, #29aeec 50%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+  .header_util_evt > a {
+    line-height: 38px;
+  }
+
+  .container {
+    width: 97%;
+    height: auto;
+    margin: 170px auto 0;
+    min-width: 961px;
+    max-width: 1100px;
+  }
+  .shop_info_wrap {
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
+  .shop_title_wrap {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .shop-info {
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+  }
+  .shop-info_img {
+    width: 30%;
+    height: 300px;
+  }
+  .info-img-box {
+    max-height: 300px;
+    position: relative;
+    box-shadow: 0 7px 10px -3px rgba(132, 155, 156, 0.8);
+  }
+  .shop-img {
+    display: none;
+  }
+  .shop-img > img {
+    width: 100%;
+    height: 300px;
+  }
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 0 5px 5px 0;
+    user-select: none;
+  }
+  .next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+  }
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1s;
+    animation-name: fade;
+    animation-duration: 1s;
+  }
+  @-webkit-keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .shop-info-content-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 300px;
+    margin: 0 auto;
+  }
+  .shop-info-content {
+    margin: auto 0;
+    display: flex;
+  }
+  .shop-title-sub-box {
+    margin-top: 0;
+  }
+  .shop-title-sub {
+    position: relative;
+    width: 100%;
+  }
+  .shop-title-sub > h1 {
+    font-size: 25px;
+    vertical-align: top;
+    display: inline-block;
+  }
+  .icon-box {
+    width: 20%;
+    height: auto;
+  }
+  .txt-box {
+    width: 80%;
+    font-size: 14px;
+    margin: auto 0;
+  }
+  .heart-btn {
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-heart-empty-red.png');
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -20000px;
+    position: absolute;
+    top: -2px;
+    right: 0;
+    margin-right: 50px;
+  }
+  .link-btn {
+    width: 23px;
+    height: 23px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-link.png');
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -20000px;
+    position: absolute;
+    top: -2px;
+    right: 0;
+  }
+  .shop-hashtag-icon-box {
+    margin: auto 0;
+  }
+  .location-icon {
+    width: 15px;
+    height: 20px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-location.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .call-icon {
+    width: 19px;
+    height: 20px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-call.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .hashtag-icon {
+    width: 17px;
+    height: 20px;
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .hashtag-all-icon {
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-hashtag-all.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .info-btn {
+    width: 15px;
+    height: 12px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-triangle-white.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .map-box {
+    width: 30%;
+    height: 300px;
+    border: 3px solid #29aeec;
+  }
+  .shop-contents_all {
+    margin: 5px auto 0;
+  }
+  .content-info_wrap {
+    margin-top: 10px;
+    background: linear-gradient(to bottom, #29aeec, rgb(174, 239, 255) 99%);
+  }
+  .content-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+  }
+  .content-info_title {
+    color: #fff;
+  }
+  menu-item-box {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .item {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .item:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .item-list-set {
+    float: left;
+    width: 25%;
+    position: relative;
+  }
+  .item-img {
+    width: 100%;
+  }
+  .item-img > img {
+    display: block;
+    width: 100%;
+    max-height: 300px;
+    object-fit: fill;
+  }
+  .item-info {
+    text-align: center;
+    margin: 15px 0;
+  }
+
+  .review-wrap {
+    border-top: none;
+    margin-top: 5px;
+  }
+  .review-box {
+    width: 100%;
+    box-shadow: 0px 2px 14px -2px rgba(153, 162, 180, 0.8);
+  }
+  .review-write-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+  }
+  .write-review {
+    min-width: 900px;
+    max-width: 1000px;
+    height: 35px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+  .write-review:focus {
+    outline: none;
+    border-bottom: 1px solid #000;
+  }
+  .writeBtn {
+    width: 60px;
+    height: 35px;
+    margin-right: 30px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #8cc841, #29aeec 50%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    cursor: pointer;
+  }
+
+  .addReview {
+    margin: 5px 15px;
+    border-bottom: 1px solid #aaa;
+  }
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin: 0 15px;
+    border-bottom: 1px solid #aaa;
+  }
+  .review-writer-info {
+    display: flex;
+  }
+  .review-writer {
+    margin-right: 20px;
+  }
+  .review-date {
+    font-size: 10px;
+    margin: auto 0;
+    color: #aaa;
+  }
+  .review-content {
+    font-size: 14px;
+    width: 100%;
+    box-shadow: 0px 5px 3px -2px rgba(153, 162, 180, 0.8);
+  }
+  .review-text-box {
+    padding: 15px;
+  }
+
+  .review-delete-btn > a {
+    display: inline-block;
+  }
+  .rev-del-btn {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-ex-15.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+    margin-right: 20px;
+  }
+  .review-delete-btn {
+    margin-right: 20px;
+  }
+  .rev-report-btn {
+    width: 24px;
+    height: 20px;
+    background-size: cover;
+    background-image: url('/img/icon/icon-report.png');
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+
+  footer {
+    margin-top: 100px;
+  }
+
+  /* 리뷰 신고 css 시작 */
+  .report-wrap {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 302px;
+    left: 771px;
+    height: 336px;
+    z-index: 2202;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    background-image: linear-gradient(#fff, #fff);
+  }
+  .report-header-wrap {
+    width: 400px;
+    padding: 15px 0;
+    border-bottom: 1px solid #bbb;
+    text-align: center;
+  }
+  .report-header-wrap > span {
+    font-size: 25px;
+  }
+  .report-body-wrap {
+    margin: 15px 0;
+  }
+  .report-body-wrap p {
+    margin: 20px;
+  }
+  .report-body-wrap p > label {
+    outline: none;
+  }
+  .report-body-wrap input {
+    margin-right: 10px;
+  }
+  .btn-y,
+  .btn-n {
+    margin: 0 25px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #8cc841, #29aeec 50%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    padding: 10px;
+    box-shadow: 0 15px 10px -7px #eee;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+  /* 리뷰 신고 css 끝 */
+
+  /*지도 마커 안내*/
+  .map_info {
+    text-align: center;
+    margin-top: 7px;
+    font-size: 13px;
+  }
+}

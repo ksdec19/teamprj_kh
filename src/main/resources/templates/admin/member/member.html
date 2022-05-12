@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원상세</title>
+</head>
+<body>
+<form action="#" th:object="${detailForm}">
+  <ul>
+    <li><h3>회원상세</h3></li>
+    <li>
+      <label for="memberEmail" th:for="${#ids.next('memberEmail')}">이메일</label>
+      <input type="text" name="memberEmail" id="memberEmail" th:field="*{memberEmail}" readonly="readonly">
+    </li>
+    <li>
+      <label for="memberName" th:for="${#ids.next('memberName')}">이름</label>
+      <input type="text" name="memberName" id="memberName" th:field="*{memberName}" readonly="readonly">
+    </li>
+    <li>
+      <span>성별</span>
+      <th:block th:each=" ele : ${memberGender} ">
+        <label for="male" th:for="${#ids.next('memberGender')}" th:text="${ele.description}"></label>
+        <input type="radio" th:field="*{memberGender}" th:value="${ele.name()}" disabled="disabled">
+      </th:block>
+
+      <th:block th:remove="all">
+        <label for="male">남자</label>
+        <input type="radio" name="memberGender" id="male" value="남자">
+        <label for="female">여자</label>
+        <input type="radio" name="memberGender" id="female" value="여자">
+      </th:block>
+    </li>
+    <li>
+      <label for="memberAge" th:for="${#ids.next('memberAge')}">나이</label>
+      <input type="text" name="memberAge" id="memberAge" th:field="*{memberAge}" readonly="readonly">
+    </li>
+    <li>
+      <label for="memberTel" th:for="${#ids.next('memberTel')}">전화번호</label>
+      <input type="text" name="memberTel" id="memberTel" th:field="*{memberTel}" readonly="readonly">
+    </li>
+    <li>
+      <label for="memberOwner" th:for="${#ids.next('memberOwner')}">오너</label>
+      <input type="text" name="memberOwner" id="memberOwner" th:field="*{memberOwner}" readonly="readonly">
+    </li>
+
+    <li>
+      <a th:href="@{/admin/members}">회원목록</a>
+      <a href="#" id="outMember" th:data-email="*{memberEmail}">회원탈퇴</a>
+    </li>
+  </ul>
+</form>
+
+<script>
+    outMember.addEventListener('click',function(evt){
+      evt.preventDefault();  //기본 이벤트 처리 방지
+      if(!confirm('회원삭제 하겠습니까?')){
+        return false;
+      }else{
+        const email = evt.target.dataset.memberEmail;
+        location.href=`/admin/members/${memberEmail}/del`;
+      }
+    });
+  </script>
+</body>
+</html>

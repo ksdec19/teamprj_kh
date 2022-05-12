@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+</head>
+
+<body>
+<main th:fragment="memberJoinBox">
+
+  <form action="/members/join" method="post" th:object="${joinForm}">
+    <div class="container">
+
+      <div class="container-body">
+        <div class="inputInfo">
+          <div class="member_email">
+            <li>
+              <input type="text" name="email" id="memberEmail" th:field="*{memberEmail}"
+                     placeholder="이메일을 입력해주세요. (sample@surfer.com)"
+                     th:class="${#fields.hasErrors('memberEmail') ? 'fieldError' : 'fieldSuccess'}">
+            </li>
+            <li>
+              <button id="emailDupChk" type="button">중복확인</button>
+            </li>
+          </div>
+          <li th:if="${#fields.hasErrors('memberEmail')}">
+            <p th:errors="*{memberEmail}" th:errorclass="fieldError"></p>
+          </li>
+          <p class="errmsg1"></p>
+          <div class="member_passwd">
+            <li>
+              <input type="password" placeholder="비밀번호를 입력해주세요." name="memberPasswd" id="memberPasswd"
+                     th:field="*{memberPasswd}"
+                     th:class="${#fields.hasErrors('memberPasswd') ? 'fieldError' : 'fieldSuccess'}">
+            </li>
+            <li th:if="${#fields.hasErrors('memberPasswd')}">
+              <p th:errors="*{memberPasswd}" th:errorclass="fieldError"></p>
+            </li>
+          </div>
+          <div class="member_passwd">
+            <input type="password" placeholder="비밀번호를 확인해주세요." name="memberPasswdChk" id="memberPasswdChk"
+                   th:field="*{memberPasswdChk}"
+                   th:class="${#fields.hasErrors('memberPasswdChk') ? 'fieldError' : 'fieldSuccess'}">
+            <li th:if="${#fields.hasErrors('memberPasswdChk')}">
+              <p th:errors="*{memberPasswdChk}" th:errorclass="fieldError"></p>
+            </li>
+            <li th:if="${#fields.hasErrors('global')}">
+              <p th:errors="*{global}" th:errorclass="globalError"></p>
+            </li>
+          </div>
+          <div class="member_name">
+            <li>
+              <input type="text" name="memberName" id="memberName" th:field="*{memberName}" placeholder="이름을 입력해주세요."
+                     th:class="${#fields.hasErrors('memberName') ? 'fieldError' : 'fieldSuccess'}">
+            </li>
+            <li th:if="${#fields.hasErrors('memberName')}">
+              <p th:errors="*{memberName}" th:errorclass="fieldError"></p>
+            </li>
+          </div>
+          <div class="member_gender">
+            <li>
+              <th:block th:each=" ele : ${memberGender} ">
+                <label for="male" th:for="${#ids.next('memberGender')}" th:text="${ele.description}"></label>
+                <input type="radio" th:field="*{memberGender}" th:value="${ele.name()}">
+              </th:block>
+              <th:block th:remove="all">
+                <label for="male">남자</label>
+                <input type="radio" name="gender" id="male" value="남자">
+                <label for="female">여자</label>
+                <input type="radio" name="gender" id="female" value="여자">
+              </th:block>
+            </li>
+          </div>
+          <li th:if="${#fields.hasErrors('memberGender')}">
+            <p th:errors="*{memberGender}" th:errorclass="fieldError"></p>
+          </li>
+          <div class="member_birth">
+            <li>
+              <input type="text" placeholder="8자리 생년월일을 입력해주세요. (20220101)" name="memberAge" id="memberAge"
+                     th:field="*{memberAge}"
+                     th:class="${#fields.hasErrors('memberAge') ? 'fieldError' : 'fieldSuccess'}">
+            </li>
+            <li th:if="${#fields.hasErrors('memberAge')}">
+              <p th:errors="*{memberAge}" th:errorclass="fieldError"></p>
+            </li>
+          </div>
+          <div class="member_tel">
+            <li>
+              <input type="text" placeholder="전화번호를 입력해주세요. (-제외)" name="memberTel" id="memberTel" th:field="*{memberTel}"
+                     th:class="${#fields.hasErrors('memberTel') ? 'fieldError' : 'fieldSuccess'}">
+
+            </li>
+            <li>
+              <button id="telDupChk" type="button">중복확인</button>
+            </li>
+          </div>
+          <li th:if="${#fields.hasErrors('memberTel')}">
+            <p th:errors="*{memberTel}" th:errorclass="fieldError"></p>
+          </li>
+          <p class="errmsg2"></p>
+        </div>
+
+
+        <div class="Btn">
+          <button type="button" id="joinBtn">가입</button>
+          <button type="button" id="cancelBtn" onclick="location.href='http://localhost:9080/'">취소</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <script>
+    //email 중복체크
+    const emailValidChkStatus = {
+      memberEmail: false
+    }
+
+    const $email = document.getElementById('memberEmail');
+    const $emailDupChk = document.getElementById('emailDupChk');
+
+    $emailDupChk.addEventListener('click', e => {
+      const xmlHttpreq = new XMLHttpRequest();
+
+      const url = `/api/members/${memberEmail.value}/existEmail`;
+
+      xmlHttpreq.open("GET", url);
+      xmlHttpreq.send();
+
+
+      xmlHttpreq.addEventListener('load', e => {
+        if (xmlHttpreq.status == 200) {    // 성공적으로 서버 응답 받으면
+          console.log(xmlHttpreq.response);
+
+          const result = JSON.parse(xmlHttpreq.response);   // JSON포맷 문자열 >> JS 객체로 반환
+          console.log(result);
+          const $errmsg = document.querySelector('.errmsg1');
+
+          if (result.rtcd == '00') {
+            // alert('이미 사용중인 아이디입니다.');
+            $errmsg.textContent = '이미 사용중인 아이디입니다.';
+            $errmsg.style.display = 'block';
+          } else {
+            $errmsg.textContent = '';
+            $errmsg.style.display = 'none';
+            $emailDupChk.textContent = '사용가능'
+            emailValidChkStatus.memberEmail = true;
+
+            $emailDupChk.disabled = 'disabled';
+            $email.readOnly = true;
+
+          }
+        } else {
+          console.log('Error', xmlHttpreq.status, xmlHttpreq.statusText);
+        }
+      });
+    });
+
+    // 전화번호 중복체크
+    const telValidChkStatus = {
+      memberTel: false
+    }
+
+    const $tel = document.getElementById('memberTel');
+    const $telDupChk = document.getElementById('telDupChk');
+
+    $telDupChk.addEventListener('click', e => {
+      const xmlHttpreq = new XMLHttpRequest();
+
+      const url = `/api/members/${memberTel.value}/existTel`;
+
+      xmlHttpreq.open("GET", url);
+      xmlHttpreq.send();
+
+      xmlHttpreq.addEventListener('load', e => {
+        if (xmlHttpreq.status == 200) {    // 성공적으로 서버 응답 받으면
+          console.log(xmlHttpreq.response);
+
+          const result = JSON.parse(xmlHttpreq.response);   // JSON포맷 문자열 >> JS 객체로 반환
+          console.log(result);
+          const $errmsg = document.querySelector('.errmsg2');
+
+          if (result.rtcd == '00') {
+            // alert('이미 사용중인 전화번호입니다.');
+            $errmsg.textContent = '이미 사용중인 전화번호입니다.';
+            $errmsg.style.display = 'block';
+          } else {
+            $errmsg.textContent = '';
+            $errmsg.style.display = 'none';
+            $telDupChk.textContent = '사용가능'
+            telValidChkStatus.memberTel = true;
+
+            $telDupChk.disabled = 'disabled';
+            $tel.readOnly = true;
+
+          }
+        } else {
+          console.log('Error', xmlHttpreq.status, xmlHttpreq.statusText);
+        }
+      });
+    });
+
+    // 회원가입 버튼 클릭 시
+    joinBtn.addEventListener('click', e => {
+
+      // 아이디 중복체크 미이행 시
+      if (!emailValidChkStatus.email && telValidChkStatus.tel) {
+        alert('아이디 중복체크 바랍니다');
+        $email.focus();
+        $email.select();
+        return;
+      }
+      e.target.closest('form').submit();
+    });
+  </script>
+</main>
+</body>
+</html>

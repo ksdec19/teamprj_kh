@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커피숍 전체조회</title>
+  <style>
+    .first-row{
+      background-Color:yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>커피숍 전체 조회</h3>
+  <hr>
+  <!--<div>[[${memberAll}]]</div>-->
+  <table>
+    <thead>
+      <tr>
+        <th>NO</th>
+        <th>내부ID</th>
+        <th>shopName</th>
+        <th>shopAddress</th>
+        <th>shopTel</th>
+        <!-- 임의 추가한 구간 -->
+        <th>viewCnt</th>
+        <th>shopBookmarkCnt</th>
+        <th>shopReviewCnt</th>
+        <th>parking</th>
+        <th>allday</th>
+        <th>shopCdate</th>
+
+        <!-- end of 임의 추가한 구간 -->
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="coffeeShop : ${list}">
+        <th:block th:if="${coffeeShopStat.first}">
+          <td class="first-row" th:text="${coffeeShopStat.count}"></td>
+          <td class="first-row" th:text="${coffeeShop.shopId}"></td>
+          <td class="first-row" ><a th:href="@{|/admin/members/${coffeeShop.shopName}/|}" th:text="${coffeeShop.shopName}"></a></td>
+          <td class="first-row" th:text="${coffeeShop.shopAddress}"></td>
+          <td class="first-row" th:text="${coffeeShop.shopTel}"></td>
+          <!-- 임의 추가한 구간 -->
+          <td class="first-row" th:text="${coffeeShop.viewCnt}"></td>
+          <td class="first-row" th:text="${coffeeShop.shopBookmarkCnt}"></td>
+          <td class="first-row" th:text="${coffeeShop.shopReviewCnt}"></td>
+          <td class="first-row" th:text="${coffeeShop.parking}"></td>
+          <td class="first-row" th:text="${coffeeShop.allday}"></td>
+          <td class="first-row" th:text="${coffeeShop.shopCdate}"></td>
+          <!-- end of 임의 추가한 구간 -->
+        </th:block>
+
+        <th:block th:unless="${coffeeShopStat.first}">
+          <td th:text="${coffeeShopStat.count}"></td>
+          <td th:text="${coffeeShop.shopId}"></td>
+          <td> <a th:href="@{|/admin/members/${coffeeShop.shopName}/|}" th:text="${coffeeShop.shopName}"></a></td>
+          <td th:text="${coffeeShop.shopAddress}"></td>
+          <td th:text="${coffeeShop.shopTel}"></td>
+          <!-- 임의 추가한 구간 -->
+          <td th:text="${coffeeShop.viewCnt}"></td>
+          <td th:text="${coffeeShop.shopBookmarkCnt}"></td>
+          <td th:text="${coffeeShop.shopReviewCnt}"></td>
+          <td th:text="${coffeeShop.parking}"></td>
+          <td th:text="${coffeeShop.allday}"></td>
+          <td th:text="${coffeeShop.shopCdate}"></td>
+
+          <!-- end of 임의 추가한 구간 -->
+        </th:block>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

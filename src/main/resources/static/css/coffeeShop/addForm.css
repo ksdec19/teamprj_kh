@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+/* ckeditor style 지정 */
+#bcontent {
+  display: none;
+}
+.coffeeShop-wrap .ck-editor__editable {
+  min-height: 20rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+/*.coffeeShop-wrap * {outline: 1px solid red;}*/
+.coffeeShop-wrap {
+  width: 80%;
+}
+
+.coffeeShop-wrap .coffeeShop-title {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.coffeeShop-wrap .coffeeShop-content {
+  display: grid;
+  grid-template-columns: 100px minmax(100px, 1fr);
+  gap: 5px;
+}
+
+.coffeeShop-wrap .coffeeShop-content .w100 {
+  width: 100%;
+  padding: 3px;
+}
+
+.coffeeShop-wrap .coffeeShop-btngrp {
+  display: flex;
+  justify-content: flex-end;
+}

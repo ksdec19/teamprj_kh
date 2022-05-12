@@ -1,0 +1,215 @@
+@import url('reset.css');
+
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+body {
+  font-family: 'Jeju Gothic', sans-serif;
+}
+
+@media screen and (min-width: 961px) {
+  /* Home Page */
+
+  /* Contents Page */
+  /* Header*/
+  .header_top_wrap {
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    box-shadow: 0 7px 10px -3px rgba(132, 155, 156, 0.8);
+    background-color: #fff;
+    z-index: 1000;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header_logo_home_evt {
+    width: 220px;
+    height: 37px;
+    text-align: center;
+    margin-left: 40px;
+  }
+  .logo {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('/img/logo/logo-color.png');
+    display: block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .header_util_wrap {
+    margin-right: 40px;
+    display: flex;
+  }
+  .header_util_evt {
+    width: 100px;
+    height: 37px;
+    margin: 0 10px;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #8cc841, #29aeec 50%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+  .header_util_evt > a {
+    line-height: 38px;
+
+  }
+
+  /* body */
+  .body-wrap {
+    max-width: 1200px;
+    margin: 119px auto 0;
+    height: 100%;
+  }
+  .body-wrap::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+  /* body - aside */
+  .page-aside-wrap {
+     position: fixed;
+        top: 10px;
+        left: 160px;
+        float: left;
+        width: 23%;
+        max-width: 300px;
+  }
+  .aside-menu-tab {
+    margin-top: 120px;
+  }
+  .aside-title {
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 0;
+    background: linear-gradient(to bottom, #29aeec, rgb(174, 239, 255) 99%);
+  }
+  .nav-tab {
+    margin-left: 10px;
+  }
+  .nav-list-each {
+    padding-top: 20px;
+    font-size: 15px;
+  }
+  .nav-list-sub-wrap {
+    font-size: 13px;
+  }
+  .nav-list-each > a {
+    margin-left: 20px;
+  }
+  .nav-list-each > ul > li {
+    margin: 20px 0 0 30px;
+  }
+  .nav-list-each > a:hover,
+  .nav-list-each > ul > li > a:hover {
+    border-bottom: 1px solid #aaa;
+  }
+
+  /* body - main */
+  .page-main-wrap {
+    position: relative;
+    top: 30px;
+    left: 335px;
+    width: 76.5%;
+    float: left;
+    height: 1200px;
+  }
+  .main-nav-title {
+  text-align: center;
+    font-size: 23px;
+  }
+
+  /*  */
+
+  .main-review-wrap {
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 70px;
+  }
+  .main-review-each {
+    box-shadow: 0px 2px 14px -2px rgba(153, 162, 180, 0.8);
+    display: flex;
+    height: 150px;
+    margin-bottom: 30px;
+  }
+  .review-shop-content-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .review-shop-img-box {
+    text-align: center;
+    border-right: 1px solid #ddd;
+  }
+  .review-shop-img-box > img {
+    width: 170px;
+    height: 100px;
+    margin: 10px;
+  }
+  .shop-title {
+    margin-bottom: 7px;
+    font-size: 13px;
+  }
+  .review-header {
+    padding: 15px;
+    margin: 5px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .review-writer,
+  .review-date,
+  .review-btn,
+  .review-writer-info {
+    display: inline-block;
+  }
+  .review-writer {
+    font-size: 12px;
+  }
+  .review-date {
+    font-size: 10px;
+    color: #aaa;
+    margin-left: 15px;
+  }
+  .review-btn > a {
+    margin: 0 10px;
+  }
+  .rev-modify-btn {
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+    background-image: url('../icon/icon-modify-black.png');
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .rev-report-btn {
+    width: 20px;
+    height: 17px;
+    background-size: cover;
+    background-image: url('../icon/icon-report.png');
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .rev-del-btn {
+    width: 13px;
+    height: 13px;
+    background-size: cover;
+    background-image: url('../icon/icon-ex-black.png');
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -20000px;
+  }
+  .review-content {
+    padding: 15px;
+    margin: 5px;
+    height: 100px;
+    overflow: scroll;
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인</title>
+  <link rel="stylesheet" href="" th:href="@{/css/page/login-page-style.css}">
+</head>
+<body>
+<div class="container">
+  <div class="container-title">
+    <img src="../img/logo/logo-color.png" onclick="location.href='http://localhost:9080/'"/>
+  </div>
+
+  <!-- 글로벌 오류 case1) form태그 밖에 있을 때 -->
+  <div class="container-body">
+    <ul th:if="${#fields.hasErrors('${loginForm}')}">
+      <li th:errors="${loginForm}" th:errorclass="globalError"></li>
+    </ul>
+    <form action="" th:action method="post" th:object="${loginForm}">
+      <ul class="form-wrap">
+        <!-- 글로벌 오류 case2) form태그 안에 있을 때
+    <li th:if="${#fields.hasErrors('global')}" class="globalError">
+      <p th:each="err : ${#fields.errors('global')}" th:text="${err}">글로벌 오류</p>
+    </li>
+    -->
+        <li>
+          <label for="memberEmail"></label>
+          <input
+              type="text"
+              name="memberEmail"
+              id="memberEmail"
+              th:field="*{memberEmail}"
+              th:errorclass="fieldError"
+              placeholder="이메일"
+          />
+        </li>
+        <li th:if="${#fields.hasErrors('memberEmail')}">
+          <p th:errors="*{memberEmail}" th:errorclass="fieldError"></p>
+        </li>
+        <li>
+          <label for="memberPasswd"></label>
+          <input
+              type="password"
+              name="memberPasswd"
+              id="memberPasswd"
+              th:field="*{memberPasswd}"
+              th:errorclass="fieldError"
+              placeholder="비밀번호"
+          />
+        </li>
+        <li th:if="${#fields.hasErrors('memberPasswd')}">
+          <p th:errors="*{memberPasswd}" th:errorclass="fieldError"></p>
+        </li>
+        <li>
+          <button type="submit" class="login-btn">로그인</button>
+        </li>
+        <li>
+          <a href="" class="find-id" th:href="@{/members/findEmail}"
+          >아이디찾기</a
+          >
+          <a href="" class="find-pw"  th:href="@{/members/findPasswd}">비밀번호찾기</a>
+          <a href="" class="sign-up" th:href="@{/members/join}"
+          >회원가입</a
+          >
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
+</body>
+</html>

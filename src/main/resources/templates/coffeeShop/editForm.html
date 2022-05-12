@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragment/main2::main2(
+        ~{::title},       <!--/* title */-->
+        ~{::link},        <!--/* styles */-->
+        ~{::script},      <!--/* scripts */-->
+        ~{},              <!--/* style */-->
+        ~{},              <!--/* script */-->
+        ~{::.upm-inner},  <!--/* upm */-->
+        ~{},              <!--/* header */-->
+        ~{::nav},         <!--/* nav */-->
+        ~{::main},        <!--/* main */-->
+        _                 <!--/* footer default*/-->
+      )}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커피숍 수정</title>
+</head>
+<link rel="stylesheet" href="" th:href="@{/css/coffeeShop/editForm.css}">
+<script defer src="" th:src="@{/js/common/ckeditor.js}"></script>
+<script defer src="" th:src="@{/js/coffeeShop/editForm.js}"></script>
+<body>
+<div class="global-wrap">
+  <div class="upm">
+    <div class="inner upm-inner">
+      <th:block th:replace="~{fragment/uppermost2::afterLoginUpm}"></th:block>
+    </div>
+  </div>
+  <div class="hdr">
+    <div class="inner hdr-inner">
+      <header>header</header>
+    </div>
+  </div>
+  <div class="gnb">
+    <div class="inner gnb-inner">
+      <nav></nav>
+    </div>
+  </div>
+  <div class="main">
+    <div class="inner main-inner">
+      <main>
+        <div class="coffeeShop-wrap" th:data-code="${category}">
+          <div class="coffeeShop-title"><h3>커피숍 수정</h3></div>
+          <div class="class-body">
+            <form id="editForm" action="" th:action="@{|/coffeeShop/*{bbsId}/edit|}" method="post" th:object="${editForm}" enctype="multipart/form-data">
+              <input type="hidden" th:field="*{bbsId}">
+              <input type="hidden" th:field="*{email}">
+              <input type="hidden" th:field="*{nickname}">
+              <div class="coffeeShop-hit">
+                <span class="coffeeShop-hit-content coffeeShop-hit-tit">조회수</span>
+                <span class="coffeeShop-hit-content coffeeShop-hit-cnt" th:text="*{hit}">10</span>
+              </div>
+              <div class="coffeeShop-content">
+                <div><label for="">분류</label></div>
+                <div>
+                  <select name="" id="" class="w100" th:field="*{bcategory}" >
+                    <option value="">==선택==</option>
+                    <th:block th:each="code : ${classifier}">
+                      <option value="" th:value="${code.code}" th:text="${code.decode}"></option>
+                    </th:block>
+                  </select>
+                  <div class="fieldError" th:errors="*{bcategory}"></div>
+                </div>
+                <div><label for="">제목</label></div>
+                <div><input type="text" name="" id="" class="w100" th:field="*{title}" ></div>
+                <div class="fieldError" th:errors="*{title}"></div>
+                <div><label for="">작성자</label></div>
+                <div><span th:text="|*{nickname} ( *{email} )|"></span></div>
+                <div><label for="">내용</label></div>
+                <div><textarea name="" id="" rows="10" class="w100" th:field="*{bcontent}" ></textarea></div>
+                <div class="fieldError" th:errors="*{bcontent}"></div>
+                <div><label>첨부</label></div>
+                <div><input type="file"th:field="*{files}"  multiple></div>
+              </div>
+            <div class="coffeeShop-btngrp">
+              <button type="button" id="cancelBtn">취소</button>
+              <button type="button" id="saveBtn">저장</button>
+              <button type="button" id="listBtn">목록</button>
+            </div>
+            <div class="coffeeShop-attach">
+              <div><label>&nbsp;</label></div>
+              <div id="attachFiles">
+                <div class="attachFile" th:each="file : ${attachFiles}">
+                  <a href="" th:href="@{|/attach/down/${file.uploadfileId}|}" th:text="${file.upload_filename}"></a>
+                  <i class="fa-solid fa-trash-can" th:data-fid="${file.uploadfileId}"></i>
+                  <th:block th:if="${#strings.contains(file.ftype,'image')}" >
+                    <img th:src="@{|/attach/view/${file.uploadfileId}|}" th:width="30px" th:height="30px">
+                  </th:block>
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="foot">
+      <div class="inner foot-inner">
+        <footer>
+          footer
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

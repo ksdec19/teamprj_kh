@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리뷰 전체조회</title>
+  <style>
+    .first-row{
+      background-Color:yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>리뷰 전체 조회</h3>
+  <hr>
+  <!--<div>[[${memberAll}]]</div>-->
+  <table>
+    <thead>
+      <tr>
+        <th>NO</th>
+        <th>내부ID</th>
+        <th>reviewContent</th>
+        <th>reviewCdate</th>
+        <th>reportCnt</th>
+        <!-- 임의 추가한 구간 -->
+        <th>memberId</th>
+        <th>shopId</th>
+
+        <!-- end of 임의 추가한 구간 -->
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="review : ${list}">
+        <th:block th:if="${reviewStat.first}">
+          <td class="first-row" th:text="${reviewStat.count}"></td>
+          <td class="first-row" th:text="${review.reviewId}"></td>
+          <td class="first-row" ><a th:href="@{|/admin/members/${review.reviewContent}/|}" th:text="${review.reviewContent}"></a></td>
+          <td class="first-row" th:text="${review.reviewCdate}"></td>
+          <td class="first-row" th:text="${review.reportCnt}"></td>
+          <!-- 임의 추가한 구간 -->
+          <td class="first-row" th:text="${review.memberId}"></td>
+          <td class="first-row" th:text="${review.shopId}"></td>
+          <!-- end of 임의 추가한 구간 -->
+        </th:block>
+
+        <th:block th:unless="${reviewStat.first}">
+          <td th:text="${reviewStat.count}"></td>
+          <td th:text="${review.reviewId}"></td>
+          <td> <a th:href="@{|/admin/members/${review.reviewContent}/|}" th:text="${review.reviewContent}"></a></td>
+          <td th:text="${review.reviewCdate}"></td>
+          <td th:text="${review.reportCnt}"></td>
+          <!-- 임의 추가한 구간 -->
+          <td th:text="${review.memberId}"></td>
+          <td th:text="${review.shopId}"></td>
+
+          <!-- end of 임의 추가한 구간 -->
+        </th:block>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
